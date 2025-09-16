@@ -1,5 +1,7 @@
 # Todo List
 
+[English](README.md) | [简体中文](README-zh_CN.md)
+
 [![Vite](https://img.shields.io/badge/Vite-4.x-blue.svg)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue.svg)](https://www.typescriptlang.org/)
 [![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-1.x-blue.svg)](https://redux-toolkit.js.org/)
