@@ -16,6 +16,8 @@ import {
   remove,
   setFilter,
 } from "@/features/todos/todosSlice";
+import type { Todo } from "@/features/todos/types";
+import { store } from "@/app/store";
 
 export default function TodosPage() {
   const dispatch = useAppDispatch();
@@ -23,10 +25,16 @@ export default function TodosPage() {
   const filtered = items.filter((i) =>
     filter === "all" ? true : filter === "completed" ? i.done : !i.done
   );
+  console.log(store.getState());
 
   return (
     <Space direction="vertical" style={{ width: "100%" }} size="large">
-      <Form onFinish={(values) => dispatch(addTodo(values))} layout="inline">
+      <Form
+        onFinish={(values: { title: string; priority: Todo["priority"] }) =>
+          dispatch(addTodo(values.title, values.priority))
+        }
+        layout="inline"
+      >
         <Form.Item name="title">
           <Input placeholder="Todo title" />
         </Form.Item>
@@ -41,7 +49,9 @@ export default function TodosPage() {
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary">Add Todo</Button>
+          <Button htmlType="submit" type="primary">
+            Add Todo
+          </Button>
         </Form.Item>
       </Form>
 
@@ -78,7 +88,7 @@ export default function TodosPage() {
             title: "state",
             render: (_, r) => (
               <Button onClick={() => dispatch(toggle(r.id))}>
-                {r.done ? "complete" : "done"}
+                {r.done ? "Completed" : "Pending"}
               </Button>
             ),
           },
