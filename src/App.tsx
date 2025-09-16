@@ -1,10 +1,13 @@
 import "./App.css";
-import TodosPage from "./pages/TodosPage";
+import { Suspense, lazy } from "react";
+const TodosPage = lazy(() => import("./pages/TodosPage"));
 
 function App() {
   return (
     <>
-      <TodosPage />
+      <Suspense fallback={<div>Loading...</div>}>
+        <TodosPage />
+      </Suspense>
     </>
   );
 }
